@@ -16,7 +16,7 @@ export HITS_DATA_URL=${HITS_DATA_URL:-"/data/hits.parquet"}
 
 # tsbs
 export TSBS_LOAD_CMD=${TSBS_LOAD_CMD:-"load_cnosdb"}
-export TSBS_LOAD_URL=${TSBS_LOAD_URL:-"http://127.0.0.1:8902"}
+export TSBS_LOAD_URL=${TSBS_LOAD_URL:-"http://127.0.0.1:31001"}
 export TSBS_DATA_URL=${TSBS_DATA_URL:-"/data/cnosdb_iot_123_2022.gz"}
 export TSBS_LOAD_WORKERS=${TSBS_LOAD_WORKERS:-24}
 # tsbc optional
@@ -29,7 +29,7 @@ export TSBS_SCALE=${TSBS_SCALE:-4000}
 # cnosdb cli
 export CLI_CMD=${CLI_CMD:-"cnosdb-cli"}
 export QUERY_HOST=${QUERY_HOST:-"127.0.0.1"}
-export QUERY_PORT=${QUERY_PORT:-8902}
+export QUERY_PORT=${QUERY_PORT:-31001}
 
 export SQL_CLI="${CLI_CMD} --host ${QUERY_HOST}  --port ${QUERY_PORT}"
 

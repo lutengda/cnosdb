@@ -43,7 +43,7 @@ TSBS_RUN_QUERIES_CMD=/Users/yukkit/Downloads/mac-arm64-cnosdb/run_queries_cnosdb
 #### cnosdb cli
 - CLI_CMD: cnosdb cli 命令，默认`cnosdb-cli`
 - QUERY_HOST: 查询的目标数据库的host，默认`127.0.0.1`
-- QUERY_PORT: 查询的目标数据库的port，默认`8902`
+- QUERY_PORT: 查询的目标数据库的port，默认`31001`
 
 #### 功能性
 - RESULT_DIR: benchmark.sh 脚本的输出结果目录，默认`./results`
@@ -55,7 +55,7 @@ TSBS_RUN_QUERIES_CMD=/Users/yukkit/Downloads/mac-arm64-cnosdb/run_queries_cnosdb
 #### tsbs 数据集
 
 - TSBS_LOAD_CMD: load 命令，默认`load_cnosdb`
-- TSBS_LOAD_URL: load 命令的目标数据库的地址， 默认`http://127.0.0.1:8902`
+- TSBS_LOAD_URL: load 命令的目标数据库的地址， 默认`http://127.0.0.1:31001`
 - TSBS_DATA_URL: tsbs 数据的路径， 默认`/data/cnosdb_iot_123_2022.gz`
 - TSBS_LOAD_WORKERS: laod 任务的并发数， 默认`24`
 

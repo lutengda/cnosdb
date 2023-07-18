@@ -14,7 +14,7 @@ source ${current_dir}/shell_env.sh
 TSBS_RUN_QUERIES_CMD=${TSBS_RUN_QUERIES_CMD:-"run_queries_cnosdb"}
 
 QUERY_HOST=${QUERY_HOST:-"localhost"}
-QUERY_POET=${QUERY_POET:-"8902"}
+QUERY_POET=${QUERY_POET:-"31001"}
 DB_NAME=${DB_NAME:-"benchmark"}
 
 TSBS_WORKERS=${TSBS_SEED:-8}
