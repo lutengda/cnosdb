@@ -1,4 +1,4 @@
-FROM cnosdb/cnosdb-build as build
+FROM ltd867317617/cnosdb-build as build
 
 # This environment variable is set by Github Actions.
 #
