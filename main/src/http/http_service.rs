@@ -243,6 +243,8 @@ impl HttpService {
             .or(self.put_open_tsdb())
             .or(self.write_line_protocol())
             .or(self.write_es_log())
+            .or(self.get_mock_es_version())
+            .or(self.get_mock_es_license())
     }
 
     fn routes_store(
@@ -1109,10 +1111,37 @@ impl HttpService {
             })
     }
 
+    fn get_mock_es_version(
+        &self,
+    ) -> impl Filter<Extract = (impl warp::Reply,), Error = warp::Rejection> + Clone {
+        warp::path!("api" / "v1" / "es").and(warp::get()).map(|| {
+            let mut resp = HashMap::new();
+            resp.insert("version", "8.13.4");
+            warp::reply::json(&resp)
+        })
+    }
+
+    fn get_mock_es_license(
+        &self,
+    ) -> impl Filter<Extract = (impl warp::Reply,), Error = warp::Rejection> + Clone {
+        warp::path!("api" / "v1" / "es" / "_license")
+            .and(warp::get())
+            .map(|| {
+                let mut resp = HashMap::new();
+                resp.insert("uid", "cbff45e7-c553-41f7-ae4f-9205eabd80xx");
+                resp.insert("type", "oss");
+                resp.insert("status", "active");
+                resp.insert("expiry_date_in_millis", "4000000000000");
+                let mut license = HashMap::new();
+                license.insert("license", resp);
+                warp::reply::json(&license)
+            })
+    }
+
     fn write_es_log(
         &self,
     ) -> impl Filter<Extract = (impl warp::Reply,), Error = warp::Rejection> + Clone {
-        warp::path!("api" / "v1" / "es" / "write")
+        warp::path!("api" / "v1" / "es" / "_bulk")
             .and(warp::post())
             .and(warp::body::content_length_limit(self.write_body_limit))
             .and(warp::body::bytes())
