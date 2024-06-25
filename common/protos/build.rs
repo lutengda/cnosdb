@@ -28,11 +28,15 @@ mod flatbuffers_generated;
             proto_files_dir.join("kv_service.proto"),
             proto_files_dir.join("vector_event.proto"),
             proto_files_dir.join("raft_service.proto"),
+            proto_files_dir.join("jaeger_api_v2.proto"),
+            proto_files_dir.join("jaeger_storage_v1.proto"),
         ];
         let rust_mod_names = &[
             "kv_service".to_string(),
             "vector".to_string(),
             "raft_service".to_string(),
+            "jaeger_api_v2".to_string(),
+            "jaeger_storage_v1".to_string(),
         ];
 
         // src/generated/protobuf_generated/
@@ -57,6 +61,11 @@ mod flatbuffers_generated;
         // src/generated/protobuf_generated/mod.rs
         let mut protobuf_generated_mod_rs_file = fs::File::create(output_dir_final.join("mod.rs"))?;
         for mod_name in rust_mod_names.iter() {
+            if mod_name == "jaeger_storage_v1" {
+                protobuf_generated_mod_rs_file
+                    .write_all("#[path = \"jaeger.storage.v1.rs\"]".as_bytes())?;
+                protobuf_generated_mod_rs_file.write_all(b"\n")?;
+            }
             protobuf_generated_mod_rs_file.write_all(b"pub mod ")?;
             protobuf_generated_mod_rs_file.write_all(mod_name.as_bytes())?;
             protobuf_generated_mod_rs_file.write_all(b";\n")?;
